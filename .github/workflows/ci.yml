@@ -1,0 +1,25 @@
+
+name: CI - Validate Web Application
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate HTML
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Check that index.html exists
+        run: test -f index.html
+
+      - name: Display validation result
+        run: echo "CI passed - index.html exists"
